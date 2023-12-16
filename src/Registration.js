@@ -3,6 +3,16 @@ import "./style.css";
 
 function Registration() {
     const [profileImage, setProfileImage] = useState("/profile.jpg");
+    const [isFirmSelected, setIsFirmSelected] = useState(false);
+    const [password, setPassword] = useState("");
+
+  const handleCheckboxChange = () => {
+    setIsFirmSelected(!isFirmSelected);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -60,6 +70,18 @@ function Registration() {
                     <label htmlFor="name">Name</label>
                     <input type="text" className="form-control" id="name" placeholder="Name" />
                 </div>
+                <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </div>
+
 
                 <div className="form-group">
                     <label htmlFor="inputAddress">Address</label>
@@ -147,31 +169,31 @@ function Registration() {
 
                 <div className="form-group">
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="mycheckbox" value="0" />
+                        <input className="form-check-input" type="checkbox" id="mycheckbox" value="0" onChange={handleCheckboxChange} checked={isFirmSelected}/>
                         <label className="form-check-label" htmlFor="mycheckbox">
                             Run a Firm
                         </label>
                     </div>
                 </div>
 
-                <div id="mycheckboxdiv" style={{ display: 'none' }}>
+                <div id="mycheckboxdiv" style={{ display: isFirmSelected ? 'block' : 'none' }}>
                     <div className="form-group">
                         <label htmlFor="name_firm">Name of Firm</label>
                         <input type="text" className="form-control" id="name_firm" placeholder="Name of Firm" />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="inputAddress">Address</label>
+                        <label htmlFor="inputAddress">Address of Firm</label>
                         <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
                     </div>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="phone">Phone</label>
+                            <label htmlFor="phone">Phone of Firm</label>
                             <input type="number" className="form-control" id="phone" placeholder="Phone" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="place">Place</label>
+                            <label htmlFor="place">Place of FIrm</label>
                             <input type="number" className="form-control" id="place" placeholder="Place" />
                         </div>
                     </div>
